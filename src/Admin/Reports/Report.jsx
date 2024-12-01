@@ -17,7 +17,7 @@ const Report = () => {
     const fetchData = async () => {
       try {
         // Fetch deleted reservations data from API
-        const response = await axios.get("http://localhost:4000/deleted-reservations");
+        const response = await axios.get("https://test-resbackend.vercel.app/deleted-reservations");
         
         // Group data by year and calculate yearly stats
         const dataByYear = response.data.reduce((acc, reservation) => {

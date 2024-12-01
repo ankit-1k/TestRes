@@ -27,7 +27,7 @@ const Contact = ({ props }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/contact",
+        "https://test-resbackend.vercel.app/api/contact",
         formData
       );
       console.log(response); // Log the full response from the backend

@@ -39,7 +39,7 @@ const ViewMenu = () => {
     try {
       // Send DELETE request to the backend
       await axios.delete(
-        `http://localhost:4000/api/deletemenu/${categoryId}/${itemIndex}`
+        `https://test-resbackend.vercel.app/api/deletemenu/${categoryId}/${itemIndex}`
       );
 
       // Update local state to remove the deleted item
@@ -72,7 +72,7 @@ const ViewMenu = () => {
     try {
       const { categoryId, itemIndex } = currentItem;
       const response = await axios.put(
-        `http://localhost:4000/api/updatemenu/${categoryId}/${itemIndex}`,
+        `https://test-resbackend.vercel.app/api/updatemenu/${categoryId}/${itemIndex}`,
         formData
       );
       setMenuItems((prevItems) =>

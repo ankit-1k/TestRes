@@ -17,7 +17,7 @@ const MenuReports = () => {
     const fetchYearlyData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4000/api/deleted-orders"
+          "https://test-resbackend.vercel.app/api/deleted-orders"
         );
 
         // Group data by year and calculate statistics

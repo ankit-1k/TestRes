@@ -81,7 +81,7 @@ const AdMenu = () => {
       setDeletedOrders((prev) => [...prev, orderToDelete]);
 
       // Delete the order from the backend
-      await axios.delete(`http://localhost:4000/api/orders/${orderId}`);
+      await axios.delete(`https://test-resbackend.vercel.app/api/orders/${orderId}`);
 
       // Update the orders state to remove the deleted order
       setOrders(orders.filter((order) => order._id !== orderId));
@@ -128,7 +128,7 @@ const AdMenu = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/postmenu",
+        "https://test-resbackend.vercel.app/api/postmenu",
         menuItem
       );
 
