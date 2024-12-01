@@ -14,7 +14,7 @@ const AdminContact = () => {
     const fetchContacts = async () => {
       try {
         const response = await axios.get(
-          `https://restaurantbackend-1b3r0ac66-ankits-projects-1030ff5d.vercel.app/api/getcontact`
+          `https://test-resbackend.vercel.app/api/getcontact`
         );
         setContacts(response.data);
         console.log(response.data);
