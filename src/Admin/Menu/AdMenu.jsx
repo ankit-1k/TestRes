@@ -33,7 +33,7 @@ const AdMenu = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/orders");
+        const response = await axios.get("https://test-resbackend.vercel.app/api/orders");
         setOrders(response.data);
       } catch (err) {
         setError(err.message);
@@ -43,7 +43,7 @@ const AdMenu = () => {
     const fetchDeletedOrders = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4000/api/deleted-orders"
+          "https://test-resbackend.vercel.app/api/deleted-orders"
         );
         setDeletedOrders(response.data);
       } catch (err) {

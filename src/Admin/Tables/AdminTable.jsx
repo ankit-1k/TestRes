@@ -21,7 +21,7 @@ const AdminTable = () => {
 
   const fetchReservations = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/reservations");
+      const response = await axios.get("http://localhost:4000/api/getreservations");
       setReservations(response.data);
     } catch (error) {
       console.error("Error fetching reservations", error);
@@ -31,7 +31,7 @@ const AdminTable = () => {
   const fetchDeletedReservations = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/deleted-reservations"
+        "http://localhost:4000/api/deleted-reservations"
       );
       setDeletedReservations(response.data);
     } catch (error) {
@@ -41,7 +41,7 @@ const AdminTable = () => {
 
   const deleteReservation = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/reservations/${id}`);
+      await axios.delete(`http://localhost:4000/api/reservations/${id}`);
       fetchReservations(); // Refresh the reservations list
       fetchDeletedReservations(); // Refresh the deleted reservations list
     } catch (error) {
@@ -52,7 +52,7 @@ const AdminTable = () => {
   const updateReservation = async () => {
     try {
       await axios.put(
-        `http://localhost:4000/reservations/${selectedReservation._id}`,
+        `http://localhost:4000/api/reservations/${selectedReservation._id}`,
         selectedReservation
       );
       fetchReservations();

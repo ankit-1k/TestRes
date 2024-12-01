@@ -24,7 +24,7 @@ const ViewMenu = () => {
   // Fetch menu items from the server
   const fetchMenu = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/getmenu");
+      const response = await axios.get("https://test-resbackend.vercel.app/api/getmenu");
       setMenuItems(response.data);
     } catch (error) {
       console.error("Error fetching menu items:", error);
