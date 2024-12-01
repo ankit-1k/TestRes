@@ -68,33 +68,30 @@ const App = () => {
         <Route path="/terms" element={<Terms props={terms} />} />
         <Route path="/privacy" element={<Privacy props={privacy} />} />
         {/* Admin */}
-        <Route path="/admin" element={<AdminPanel/>} />
-        {/* <Route 
+        <Route 
           path="/admin" 
           element={
             <AdminRoute>
               <AdminPanel />
             </AdminRoute>
           } 
-        /> */}
-        <Route path="/adminmenu" element={<AdMenu/>} />
-        {/* <Route 
+        />
+        <Route 
           path="/adminmenu" 
           element={
             <AdminRoute>
               <AdMenu />
             </AdminRoute>
           } 
-        /> */}
-        <Route path="/admintable" element={<AdminTable/>} />
-        {/* <Route 
+        />
+        <Route 
           path="/admintable" 
           element={
             <AdminRoute>
               <AdminTable />
             </AdminRoute>
           } 
-        /> */}
+        />
         <Route 
           path="/reports" 
           element={
