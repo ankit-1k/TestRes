@@ -15,7 +15,7 @@ const WeeklyReports = () => {
   const fetchReservations = async () => {
     try {
       const response = await axios.get(
-        "https://test-resbackend.vercel.app/deleted-reservations"
+        "https://test-resbackend.vercel.app/api/deleted-reservations"
       );
       setReservations(response.data);
       processReservationsData(response.data);
