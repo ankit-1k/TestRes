@@ -29,7 +29,7 @@ const Reservation = ({ user }) => {
   const checkTableAvailability = async () => {
     try {
       const response = await axios.get(
-        "https://test-resbackend.vercel.app/api/check-availability",
+        "http://localhost:4000/api/check-availability",
         {
           params: {
             datetime: formData.datetime,
@@ -47,7 +47,7 @@ const Reservation = ({ user }) => {
     e.preventDefault();
     try {
       const reservationData = { ...formData, table: tblArr };
-      await axios.post("https://test-resbackend.vercel.app/api/reservations", reservationData);
+      await axios.post("http://localhost:4000/api/reservations", reservationData);
       alert("Reservation successful!");
       console.log(reservationData)
     } catch (error) {

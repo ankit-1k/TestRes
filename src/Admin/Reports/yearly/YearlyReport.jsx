@@ -13,7 +13,7 @@ const YearlyReport = () => {
 
   const fetchReservationData = async () => {
     try {
-      const response = await axios.get("https://test-resbackend.vercel.app/api/deleted-reservations"); // Adjust URL as needed
+      const response = await axios.get("http://localhost:4000/api/deleted-reservations"); // Adjust URL as needed
       const reservations = response.data;
       const yearlyData = getYearlyData(reservations);
       setupChartData(yearlyData);

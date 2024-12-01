@@ -12,7 +12,7 @@ const Menu = ({ user }) => {
     // Fetch the food menu data
     const fetchFoodMenu = async () => {
       try {
-        const response = await fetch("https://test-resbackend.vercel.app/api/getmenu"); // Replace with your API endpoint
+        const response = await fetch("http://localhost:4000/api/getmenu"); // Replace with your API endpoint
         if (response.ok) {
           const data = await response.json();
           setFoodMenu(data); // Set the fetched data to state
@@ -60,7 +60,7 @@ const Menu = ({ user }) => {
     };
 
     try {
-      const response = await fetch("https://test-resbackend.vercel.app/api/order", {
+      const response = await fetch("http://localhost:4000/api/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

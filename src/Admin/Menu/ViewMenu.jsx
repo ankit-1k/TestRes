@@ -24,7 +24,7 @@ const ViewMenu = () => {
   // Fetch menu items from the server
   const fetchMenu = async () => {
     try {
-      const response = await axios.get("https://test-resbackend.vercel.app/api/getmenu");
+      const response = await axios.get("http://localhost:4000/api/getmenu");
       setMenuItems(response.data);
     } catch (error) {
       console.error("Error fetching menu items:", error);
@@ -39,7 +39,7 @@ const ViewMenu = () => {
     try {
       // Send DELETE request to the backend
       await axios.delete(
-        `https://test-resbackend.vercel.app/api/deletemenu/${categoryId}/${itemIndex}`
+        `http://localhost:4000/api/deletemenu/${categoryId}/${itemIndex}`
       );
 
       // Update local state to remove the deleted item
@@ -72,7 +72,7 @@ const ViewMenu = () => {
     try {
       const { categoryId, itemIndex } = currentItem;
       const response = await axios.put(
-        `https://test-resbackend.vercel.app/api/updatemenu/${categoryId}/${itemIndex}`,
+        `http://localhost:4000/api/updatemenu/${categoryId}/${itemIndex}`,
         formData
       );
       setMenuItems((prevItems) =>

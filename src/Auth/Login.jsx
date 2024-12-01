@@ -13,7 +13,7 @@ const Login = ({ onLogin }) => {
     e.preventDefault(); 
     try {
       const response = await axios.post(
-        "https://test-resbackend.vercel.app/api/auth/login",
+        "http://localhost:4000/api/auth/login",
         { email, password }
       );
       console.log("Response:", response.data); // Check the response

@@ -14,7 +14,7 @@ const Monthly = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('https://test-resbackend.vercel.app/api/deleted-orders');
+      const response = await axios.get('http://localhost:4000/api/deleted-orders');
       setOrders(response.data);
     } catch (error) {
       console.error('Error fetching orders:', error);
