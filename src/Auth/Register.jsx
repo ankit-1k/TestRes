@@ -16,7 +16,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/auth/register",
+        "https://test-resbackend.vercel.app/api/auth/register",
         { username, email, password, phone }
       );
       alert(response.data.message);

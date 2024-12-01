@@ -8,13 +8,13 @@ import AdHeader from "../header/AdHeader";
 const AdminContact = () => {
   const [contacts, setContacts] = useState([]);
   // const baseURL = window.location.hostname === "localhost" 
-  // ? "http://localhost:4000/api" 
+  // ? "https://test-resbackend.vercel.app/api" 
   // : "https://restaurantbackend-1b3r0ac66-ankits-projects-1030ff5d.vercel.app/api";
   useEffect(() => {
     const fetchContacts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/getcontact`
+          `https://test-resbackend.vercel.app/api/getcontact`
         );
         setContacts(response.data);
         console.log(response.data);
@@ -29,7 +29,7 @@ const AdminContact = () => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/contact/${id}`
+        `https://test-resbackend.vercel.app/api/contact/${id}`
       );
       console.log(response.data); // Logs success message
       // Remove the deleted contact from the local state

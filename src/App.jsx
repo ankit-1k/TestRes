@@ -71,41 +71,41 @@ const App = () => {
         <Route 
           path="/admin" 
           element={
-            <AdminRoute>
+            //<AdminRoute>
               <AdminPanel />
-            </AdminRoute>
+           // </AdminRoute>
           } 
         />
         <Route 
           path="/adminmenu" 
           element={
-            <AdminRoute>
+            //<AdminRoute>
               <AdMenu />
-            </AdminRoute>
+            //</AdminRoute>
           } 
         />
         <Route 
           path="/admintable" 
           element={
-            <AdminRoute>
+           // <AdminRoute>
               <AdminTable />
-            </AdminRoute>
+            //</AdminRoute>
           } 
         />
         <Route 
           path="/reports" 
           element={
-            <AdminRoute>
+            //<AdminRoute>
               <Report />
-            </AdminRoute>
+            //</AdminRoute>
           } 
         />
         <Route 
           path="/weekreports" 
           element={
-            <AdminRoute>
+            //<AdminRoute>
               <MenuReports />
-            </AdminRoute>
+            //</AdminRoute>
           } 
         />
         <Route 
