@@ -50,9 +50,9 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        {/* <Route path="/login" element={<Login onLogin={handleLogin} />} /> */}
         <Route path="/" element={<Login onLogin={handleLogin} />} />{" "}
-        <Route path="/register" element={<Register />} />
+        {/* <Route path="/register" element={<Register />} /> */}
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/home" user={userData}  element={<Home />} />
         <Route path="/about" element={<About props={about} />} />
