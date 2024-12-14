@@ -1,0 +1,391 @@
+
+
+// import React from 'react'
+
+// const Reaservation = () => {
+//   return (
+//     <div>
+//         <div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+//             <div class="row g-0">
+//                 <div class="col-md-6">
+//                     <div class="video">
+//                         <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+//                             <span></span>
+//                         </button>
+//                     </div>
+//                 </div>
+//                 <div class="col-md-6 bg-dark d-flex align-items-center">
+//                     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+//                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
+//                         <h1 class="text-white mb-4">Book A Table Online</h1>
+//                         <form>
+//                             <div class="row g-3">
+//                                 <div class="col-md-6">
+//                                     <div class="form-floating">
+//                                         <input type="text" class="form-control" id="name" placeholder="Your Name" />
+//                                         <label for="name">Your Name</label>
+//                                     </div>
+//                                 </div>
+//                                 <div class="col-md-6">
+//                                     <div class="form-floating">
+//                                         <input type="email" class="form-control" id="email" placeholder="Your Email" />
+//                                         <label for="email">Your Email</label>
+//                                     </div>
+//                                 </div>
+//                                 <div class="col-md-6">
+//                                     <div class="form-floating date" id="date3" data-target-input="nearest">
+//                                         <input type="text" class="form-control datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
+//                                         <label for="datetime">Date & Time</label>
+//                                     </div>
+//                                 </div>
+//                                 <div class="col-md-6">
+//                                     <div class="form-floating " id="" data-target-input="">
+//                                         <input type="number" class="form-control" id="" placeholder="Phone" data-target="" data-toggle="" />
+//                                         <label for="">Phone No.</label>
+//                                     </div>
+//                                 </div>
+//                                 <div class="col-md-6">
+//                                     <div class="form-floating">
+//                                         <select class="form-select" id="table1">
+//                                           <option value="1">Table 1</option>
+//                                           <option value="2">Table 2</option>
+//                                           <option value="3">Table 3</option>
+//                                           <option value="4">Table 4</option>
+//                                         </select>
+//                                         <label for="table1">No Of Table</label>
+//                                       </div>
+//                                 </div>
+//                                 <div class="col-md-6">
+//                                     <div class="form-floating">
+//                                         <select class="form-select" id="select1">
+//                                           <option value="1">People 1</option>
+//                                           <option value="2">People 2</option>
+//                                           <option value="3">People 3</option>
+//                                           <option value="4">People 4</option>
+//                                         </select>
+//                                         <label for="select1">No Of People</label>
+//                                       </div>
+//                                 </div>
+//                                 <div class="col-12">
+//                                     <div class="form-floating">
+//                                         <textarea class="form-control" placeholder="Special Request" id="message" style={{height:'100px'}}></textarea>
+//                                         <label for="message">Special Request</label>
+//                                     </div>
+//                                 </div>
+//                                 <div class="col-12">
+//                                     <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+//                                 </div>
+//                             </div>
+//                         </form>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+
+//         <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+//             <div class="modal-dialog">
+//                 <div class="modal-content rounded-0">
+//                     <div class="modal-header">
+//                         <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
+//                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+//                     </div>
+//                     <div class="modal-body">
+//                         <div class="ratio ratio-16x9">
+//                             <iframe title='view' class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
+//                                 allow="autoplay"></iframe>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     </div>
+//   )
+// }
+
+// export default Reaservation
+
+
+
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+const Reservation = () => {
+  const [tblArr, setTblArr] = useState([]);
+  const [bookedTables, setBookedTables] = useState([]);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    datetime: "",
+    phone: "",
+    table: [],
+    people: 1,
+    specialRequest: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    const fetchBookedTables = async () => {
+      try {
+        const response = await axios.get(
+          "https://test-resbackend.vercel.app/api/reservations/booked-tables"
+        );
+        setBookedTables(response.data.bookedTables); // Assuming response contains an array of booked tables
+      } catch (error) {
+        console.error("Error fetching booked tables:", error);
+      }
+    };
+
+    fetchBookedTables();
+  }, []);
+  const handleTableSelection = (tableNumber) => {
+    if (bookedTables.includes(tableNumber)) return; // Prevent selecting already booked tables
+
+    setTblArr((prev) => {
+      if (prev.includes(tableNumber)) {
+        // Remove table if it's already selected
+        return prev.filter((table) => table !== tableNumber);
+      } else {
+        // Add table to the array if it's not selected
+        return [...prev, tableNumber];
+      }
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const dataToSubmit = { ...formData, table: tblArr }; // Include selected tables in the formData
+      const response = await axios.post(
+        "https://test-resbackend.vercel.app/api/reservations",
+        dataToSubmit
+      );
+      console.log("Reservation successfully created:", response.data);
+    } catch (error) {
+      console.error("Error creating reservation:", error);
+    }
+  };
+
+  return (
+    <div>
+      <div
+        className="container-xxl py-5 px-0 wow fadeInUp"
+        data-wow-delay="0.1s"
+      >
+        <div className="row g-0">
+          <div className="col-md-6">
+            <div className="video">
+              <button
+                type="button"
+                className="btn-play"
+                data-bs-toggle="modal"
+                data-src="https://www.youtube.com/embed/DWRcNpR6Kdc"
+                data-bs-target="#videoModal"
+              >
+                <span></span>
+              </button>
+            </div>
+          </div>
+          <div className="col-md-6 bg-dark d-flex align-items-center">
+            <div className="p-5 wow fadeInUp" data-wow-delay="0.2s">
+              <h5 className="section-title ff-secondary text-start text-primary fw-normal">
+                Reservation
+              </h5>
+              <h1 className="text-white mb-4">Book A Table Online</h1>
+              <form onSubmit={handleSubmit}>
+                <div className="row g-3">
+                  <div className="col-md-6">
+                    <div className="form-floating">
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        id="name"
+                        placeholder="Your Name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                      />
+                      <label htmlFor="name">Your Name</label>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-floating">
+                      <input
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        id="email"
+                        placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                      />
+                      <label htmlFor="email">Your Email</label>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div
+                      className="form-floating date"
+                      id="date3"
+                      data-target-input="nearest"
+                    >
+                      <input
+                        type="datetime-local"
+                        name="datetime"
+                        className="form-control datetimepicker-input"
+                        id="datetime"
+                        placeholder="Date & Time"
+                        value={formData.datetime}
+                        onChange={handleChange}
+                        required
+                      />
+                      <label htmlFor="datetime">Date & Time</label>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-floating">
+                      <input
+                        type="text"
+                        name="phone"
+                        className="form-control"
+                        id="phone"
+                        placeholder="Phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                      />
+                      <label htmlFor="phone">Phone No.</label>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-floating">
+                      <select
+                        name="people"
+                        className="form-select"
+                        id="select1"
+                        value={formData.people}
+                        onChange={handleChange}
+                        required
+                      >
+                        <option value="1">People 1</option>
+                        <option value="2">People 2</option>
+                        <option value="3">People 3</option>
+                        <option value="4">People 4</option>
+                      </select>
+                      <label htmlFor="select1">No Of People</label>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-floating">
+                      <input
+                        type="text"
+                        name="table"
+                        className="form-control"
+                        id="table1"
+                        placeholder="Selected Tables"
+                        value={tblArr.join(", ")} // Display the selected tables
+                        readOnly
+                      />
+                      <label htmlFor="table1">Selected Tables</label>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="btn btn-outline-secondary mt-2"
+                      data-bs-toggle="modal"
+                      data-bs-target="#seatModal"
+                    >
+                      View Tables
+                    </button>
+                  </div>
+                  <div className="col-12">
+                    <div className="form-floating">
+                      <textarea
+                        name="specialRequest"
+                        className="form-control"
+                        placeholder="Special Request"
+                        id="message"
+                        style={{ height: "100px" }}
+                        value={formData.specialRequest}
+                        onChange={handleChange}
+                      ></textarea>
+                      <label htmlFor="message">Special Request</label>
+                    </div>
+                  </div>
+                  <div className="col-12">
+                    <button
+                      className="btn btn-primary w-100 py-3"
+                      type="submit"
+                    >
+                      Book Now
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Seat Selection Modal */}
+      <div
+        className="modal fade"
+        id="seatModal"
+        tabIndex="-1"
+        aria-labelledby="seatModal"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content rounded-0">
+            <div className="modal-header">
+              <h5 className="modal-title" id="seatModal">
+                Select Tables
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <div className="d-flex justify-content-around">
+                {[1, 2, 3, 4, 5, 6].map((tableNumber) => (
+                  <i
+                    key={tableNumber}
+                    className={`bi bi-tablet ${
+                      tblArr.includes(tableNumber)
+                        ? "text-primary"
+                        : bookedTables.includes(tableNumber)
+                        ? "text-danger" 
+                        : ""
+                    }`}
+                    style={{
+                      fontSize: "2rem",
+                      cursor: bookedTables.includes(tableNumber)
+                        ? "not-allowed"
+                        : "pointer", 
+                      padding: "10px",
+                      border: tblArr.includes(tableNumber)
+                        ? "2px solid blue"
+                        : bookedTables.includes(tableNumber)
+                        ? "2px solid red" 
+                        : "1px solid gray",
+                      borderRadius: "5px",
+                    }}
+                    onClick={() => handleTableSelection(tableNumber)}
+                  ></i>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Reservation;

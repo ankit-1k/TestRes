@@ -1,0 +1,69 @@
+.ad-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #FEA116; /* Bright yellow background */
+    color: #333; /* Darker text for contrast */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ad-title {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.ad-sidebar {
+    width: 250px;
+    background-color: #fff4e1; /* Light yellow background for sidebar */
+}
+
+.ad-sidebar-title {
+    margin: 0;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #ff9900; /* Darker yellow for sidebar title */
+}
+
+.ad-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.ad-menu li{
+    margin-top: 5px;
+}
+.ad-menu-item {
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ad-menu-item:hover {
+    background-color: #ffffff; /* Light hover effect */
+    color: #FEA116;
+}
+
+.ad-menu-item:active {
+    background-color: #ffffff; /* Active state */
+}
+
+.ad-button {
+    background-color: #ff9900; /* Button background color */
+    color: white; /* Button text color */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.ad-button:hover {
+    background-color: #f8ca84; /* Darker yellow on hover */
+}
+
+.ad-menu-item.selected {
+    background-color: #FEA116; /* Same hover color */
+    color: white; /* Text color for selected item */
+    font-weight: bold; /* Optional: highlight the text */
+}

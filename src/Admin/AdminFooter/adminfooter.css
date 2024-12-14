@@ -1,0 +1,26 @@
+.footer {
+  font-size: 0.9rem;
+}
+
+.footer a {
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #ffc107; /* Bootstrap's warning color */
+}
+
+.footer-list li{
+    margin-top: 8px;
+    color: rgb(151, 148, 148);
+    cursor: pointer;
+}
+.muted-text-1{
+    color: rgb(151, 148, 148);
+}
+.admin-footer-social i{
+    color: rgb(151, 148, 148);
+}
+.admin-footer-social .bi:hover{
+    color: #ffc107;
+}

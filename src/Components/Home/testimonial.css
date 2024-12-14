@@ -1,0 +1,38 @@
+.testimonial-swiper {
+    padding: 20px 0;
+  }
+  
+  .testimonial-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .testimonial-card {
+    max-width: 500px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .testimonial-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 5px solid #fff;
+  }
+  
+  .testimonial-review {
+    font-size: 1.1rem;
+    color: #6c757d;
+    font-style: italic;
+  }
+  
+  .testimonial-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{
+    display: none;
+  }

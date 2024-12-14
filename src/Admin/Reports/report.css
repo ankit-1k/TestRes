@@ -1,0 +1,11 @@
+.reportImg{
+    width: 93%;
+    max-height: 330px;
+    mix-blend-mode: multiply;
+}
+.pointer{
+    cursor: pointer;
+  }
+  .info-text :hover{
+    color: rgb(5, 56, 71) !important;
+  }
