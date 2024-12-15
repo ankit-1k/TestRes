@@ -19,7 +19,7 @@ const AdHeader = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("adminLoggedIn");
+    localStorage.removeItem("token");
     navigate("/adminlogin");
   };
 
