@@ -41,6 +41,7 @@ const App = () => {
       <Routes>
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About props={about} />} />
         <Route path="/services" element={<Services props={services} />} />
         <Route path="/menu" element={<MenuTab props={foodmenu} />} />
