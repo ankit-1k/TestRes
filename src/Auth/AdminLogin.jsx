@@ -13,15 +13,16 @@ const AdminLogin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     try {
       const res = await axios.post(
         "https://test-resbackend.vercel.app/api/login",
         { username, password }
       );
-
+  
       if (res.data.token) {
         localStorage.setItem("token", res.data.token); // Save token in localStorage
+        console.log("Token saved:", localStorage.getItem("token")); // Debugging log
         alert("Login successful");
         navigate("/admin"); // Redirect to the admin dashboard
       } else {
@@ -29,14 +30,9 @@ const AdminLogin = () => {
       }
     } catch (err) {
       console.error("Error:", err.response ? err.response.data : err.message);
-
-      if (err.response && err.response.status === 401) {
-        setErrorMessage("Invalid credentials. Please try again.");
-      } else {
-        setErrorMessage("Server error. Please try again later.");
-      }
+      setErrorMessage("Invalid credentials or server error");
     }
-  };
+  }; 
 
   return (
     <div className="component">
