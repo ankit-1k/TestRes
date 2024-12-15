@@ -8,7 +8,7 @@ import Testimonial from './Testimonial'
 import Footer from '../Footer'
 import Banner from './Banner'
 
-const Home = ({ user }) => {
+const Home = () => {
     
     return (
         <div>

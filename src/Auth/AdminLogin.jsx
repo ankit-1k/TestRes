@@ -3,28 +3,40 @@ import { useNavigate } from "react-router-dom";
 import "./auth.css";
 import Navbar from "../Components/Navbar/Navbar";
 import Footer from "./../Components/Footer";
+import axios from "axios";
 
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // State to manage error messages
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const response = await fetch("https://test-resbackend.vercel.app/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
 
-    const data = await response.json();
-    if (data.success) {
-      localStorage.setItem("adminLoggedIn", "true"); // Store login status
-      navigate("/admin"); // Redirect to admin panel
-    } else {
-      alert("Invalid credentials");
+    try {
+      const res = await axios.post('https://test-resbackend.vercel.app/api/login', {
+        username,
+        password,
+      });
+
+      if (res.data.token) {
+        console.log('Token:', res.data.token); // Log the token for debugging
+        localStorage.setItem('token', res.data.token); // Save token in localStorage
+        alert('Login successful');
+        navigate('/admin'); // Redirect to the admin dashboard
+      } else {
+        alert('Token not received');
+      }
+    } catch (err) {
+      console.error('Error:', err.response ? err.response.data : err.message);
+      
+      // Check if error is due to invalid credentials or server issue
+      if (err.response && err.response.status === 401) {
+        setErrorMessage('Invalid credentials. Please try again.');
+      } else {
+        setErrorMessage('Server error. Please try again later.');
+      }
     }
   };
 
@@ -36,6 +48,7 @@ const AdminLogin = () => {
           <div className="col-md-5 from">
             <form onSubmit={handleLogin} className="log-form res-mt-30">
               <h2 className="text-center mt-3 text-white">Admin Login</h2>
+              {errorMessage && <p className="text-danger">{errorMessage}</p>} {/* Display error message if any */}
               <div className="mt-3">
                 <label>Username:</label>
                 <input

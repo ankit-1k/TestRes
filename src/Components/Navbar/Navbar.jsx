@@ -14,7 +14,7 @@ const Navbar = () => {
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0 pe-4">
-                            <Link to="/home" class="nav-item nav-link active">Home</Link>
+                            <Link to="/" class="nav-item nav-link active">Home</Link>
                             <Link to="/about" class="nav-item nav-link">About</Link>
                             <Link to="/services" class="nav-item nav-link">Service</Link>
                             <Link to="/menu" class="nav-item nav-link">Menu</Link>
