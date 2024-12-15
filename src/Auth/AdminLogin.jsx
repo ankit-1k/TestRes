@@ -15,27 +15,30 @@ const AdminLogin = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('https://test-resbackend.vercel.app/api/login', {
-        username,
-        password,
-      });
+      const res = await axios.post(
+        "https://test-resbackend.vercel.app/api/login",
+        {
+          username,
+          password,
+        }
+      );
 
       if (res.data.token) {
-        console.log('Token:', res.data.token); // Log the token for debugging
-        localStorage.setItem('token', res.data.token); // Save token in localStorage
-        alert('Login successful');
-        navigate('/admin'); // Redirect to the admin dashboard
+        console.log("Token:", res.data.token); // Log the token for debugging
+        localStorage.setItem("token", res.data.token); // Save token in localStorage
+        alert("Login successful");
+        navigate("/admin"); // Redirect to the admin dashboard
       } else {
-        alert('Token not received');
+        alert("Token not received");
       }
     } catch (err) {
-      console.error('Error:', err.response ? err.response.data : err.message);
-      
+      console.error("Error:", err.response ? err.response.data : err.message);
+
       // Check if error is due to invalid credentials or server issue
       if (err.response && err.response.status === 401) {
-        setErrorMessage('Invalid credentials. Please try again.');
+        setErrorMessage("Invalid credentials. Please try again.");
       } else {
-        setErrorMessage('Server error. Please try again later.');
+        setErrorMessage("Server error. Please try again later.");
       }
     }
   };
@@ -48,7 +51,10 @@ const AdminLogin = () => {
           <div className="col-md-5 from">
             <form onSubmit={handleLogin} className="log-form res-mt-30">
               <h2 className="text-center mt-3 text-white">Admin Login</h2>
-              {errorMessage && <p className="text-danger">{errorMessage}</p>} {/* Display error message if any */}
+              {errorMessage && (
+                <p className="text-danger">{errorMessage}</p>
+              )}{" "}
+              {/* Display error message if any */}
               <div className="mt-3">
                 <label>Username:</label>
                 <input
