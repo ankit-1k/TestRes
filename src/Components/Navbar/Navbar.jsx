@@ -24,7 +24,7 @@ const Navbar = () => {
                                     <Link to="/booking" class="dropdown-item">Booking</Link>
                                     <Link to="/team" class="dropdown-item">Our Team</Link>
                                     <Link to="/testimonial" class="dropdown-item">Testimonial</Link>
-                                    {/* <Link to="/login" class="dropdown-item">Login</Link> */}
+                                    <Link to="/adminlogin" class="dropdown-item">Login</Link>
                                     {/* <Link to="/register" class="dropdown-item">Register</Link> */}
                                 </div>
                             </div>
