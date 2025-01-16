@@ -64,6 +64,7 @@ const AdHeader = () => {
         visible={visible}
         onHide={() => setVisible(false)}
         className="ad-sidebar"
+        key={visible ? "visible" : "hidden"}
       >
         <h2 className="ad-sidebar-title">
           <i className="fa fa-utensils ad-title me-2"></i>TasteOn
